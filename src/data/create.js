@@ -1,5 +1,6 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 
+import '../sdk/init';
 import signReducer from './reducers/sign';
 
 const _reducers = {
