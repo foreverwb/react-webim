@@ -8,8 +8,8 @@ import SignUp from './components/sign/signup';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-          <SignUp />>
+      <div className="main">
+          <SignUp />
       </div>
     );
   }
