@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Provider, connect} from 'react-redux';
+import {Provider} from 'react-redux';
 import store from './data/create';
 
 import SignUp from './components/sign/signup';
@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="main">
-          <SignUp />
+          <SignUp/>
       </div>
     );
   }

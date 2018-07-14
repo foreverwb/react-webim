@@ -1,4 +1,5 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
 
 import '../sdk/init';
 import signReducer from './reducers/sign';
@@ -9,7 +10,7 @@ const _reducers = {
 
 const reducers = combineReducers(_reducers);
 
-let middlewares = [];
+let middlewares = [thunk];
 
 let finalCreateStore = applyMiddleware(...middlewares)(createStore);
 
