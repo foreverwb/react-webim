@@ -6,6 +6,7 @@ import './index.css';
 import {Link} from 'react-router';
 import {reg} from '../../data/actions/sign';
 
+import tooltip from '../common/tooltip';
 @connect(
     state => ({
         regState: state.sign.regState
@@ -36,7 +37,10 @@ export default class SignUp extends Component {
             // 跳转
         }).catch(() => {
             //tooltip
-            alert('error')
+            tooltip.show({
+                content: '注册失败，名字冲突',
+                type: 'error'
+            })
         });
     }
     render() {
