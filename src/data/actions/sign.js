@@ -23,11 +23,16 @@ export function reg(options) {
     }
 }
 
-export function login(state) {
-    return {
-        type: 'LOGIN_START',
-        payload: {
-            state: state
-        }
+export function login(options) {
+    return (dispatch) => {
+        return new Promise((resolve, reject) => {
+            options.success = (token) => {
+                resolve(token);
+            }
+            options.error = (error) => {
+                reject(error);
+            }
+            sdk.conn.open(options);
+        });
     }
 }
