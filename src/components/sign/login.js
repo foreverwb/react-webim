@@ -6,6 +6,9 @@ import {login} from '../../data/actions/sign';
 import classnames from 'classnames';
 import tooltip from '../common/tooltip';
 
+import history from '../../history/history';
+import {setToken} from '../../utils/token';
+
 @connect(
     (state) => ({}),
     {
@@ -15,7 +18,7 @@ import tooltip from '../common/tooltip';
 export default class Login extends Component {
 
     login = () => {
-        let {login} = this.props;
+        // let {login} = this.props;
         let userName = this.refs.name.value;
         let pwd = this.refs.auth.value;
         userName = userName.trim();
@@ -33,8 +36,8 @@ export default class Login extends Component {
             user: userName,
             pwd: pwd
         };
-        login(options).then((token) => {
-            console.log(token)
+        this.props.login(options).then((token) => {
+            setToken(token);
         }).catch(() => {
             tooltip.show({
                 type: 'error',

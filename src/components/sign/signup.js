@@ -4,9 +4,11 @@ import {connect} from 'react-redux';
 import classnames from 'classnames';
 import './index.css';
 import {Link} from 'react-router';
+import history from '../../history/history';
 import {reg} from '../../data/actions/sign';
 
 import tooltip from '../common/tooltip';
+
 @connect(
     state => ({
         regState: state.sign.regState
@@ -15,7 +17,6 @@ import tooltip from '../common/tooltip';
         reg
     }
 )
-
 export default class SignUp extends Component {
     signup = () => {
         let username = this.refs.name.value;
@@ -34,7 +35,7 @@ export default class SignUp extends Component {
         };
 
         this.props.reg(options).then(() => {
-            // 跳转
+            history.push('/login');
         }).catch(() => {
             //tooltip
             tooltip.show({
@@ -49,7 +50,6 @@ export default class SignUp extends Component {
             'signup': true
         });
         let {regState} = this.props;
-        console.log(this.props)
         return (
             <div className={mainClassName}>
                 <h2>注册页面</h2>
