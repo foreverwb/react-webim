@@ -12,7 +12,7 @@ import { getToken } from './utils/token';
 
 class App extends Component {
 	
-	componentDidMount() {
+	componentWillMount() {
 		console.log(this.props)
 		let token = getToken();
 		if (token) {

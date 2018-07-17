@@ -37,6 +37,7 @@ export default class Login extends Component {
             pwd: pwd
         };
         this.props.login(options).then((token) => {
+            history.push('/chat');
             setToken(token);
         }).catch(() => {
             tooltip.show({
