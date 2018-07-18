@@ -50,6 +50,7 @@ export default class Main extends Component {
 					<Route path="/signup" component={SignUp}></Route>
 					<Route path="/login" component={Login}></Route>
 					<Route path="/chat" component={Chat}></Route>
+					<Route path="/chat/:chatType/:chatId" component = {Chat} />
 				</Router>
 			</Provider>
 		);

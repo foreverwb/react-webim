@@ -56,6 +56,7 @@
   },
   "devDependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "postcss-calc-function": "^1.1.0",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^11.1.0",
     "postcss-nested": "^3.0.0",

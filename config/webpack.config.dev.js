@@ -174,10 +174,10 @@ module.exports = {
                   ident: 'postcss',
                   plugins: () => [
                     require('postcss-flexbugs-fixes'),
-                    require('postcss-import')(),
                     require("postcss-cssnext")(),
-                    require('postcss-nested'),
+                    require("postcss-import")(),
                     require('postcss-simple-vars'),
+                    require('postcss-nested'),
                   ],
                 },
               },
