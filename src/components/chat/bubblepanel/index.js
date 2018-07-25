@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
+import './index.css';
 export default class BubblePanel extends Component {
    render() {
        return (
-           <div>BubblePanel</div>
+           <div className="ctn-bubblepanel">
+           
+           </div>
        );
    }
 }

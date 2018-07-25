@@ -19,7 +19,7 @@ export default class SlideBar extends Component {
         showDialog({
             content:
                 <div className="input-container">
-                    <input type="text" className="input" placeholder="输入名字" refs="nickname"/>
+                    <input ref="nickname" name="nickname" className="input" placeholder='输入昵称'/>
                 </div>,
            
             footer:<div className="footer">
@@ -28,6 +28,12 @@ export default class SlideBar extends Component {
             title: '添加好友'
         })
     }
+
+    addRoster = () => {
+        // let value = this.refs.nickname.value;
+        console.log(this.refs.nickname)
+    }
+
     render() {
         let tokenUser = getToken();
         let username = tokenUser ? tokenUser.user.username : '';
