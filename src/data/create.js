@@ -3,9 +3,11 @@ import thunk from 'redux-thunk';
 
 import '../sdk/init';
 import signReducer from './reducers/sign';
+import session from './reducers/session';
 
 const _reducers = {
-    sign: signReducer
+    sign: signReducer,
+    session: session,
 }
 
 const reducers = combineReducers(_reducers);
