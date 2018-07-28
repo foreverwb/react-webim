@@ -25,6 +25,13 @@ export default class SessionList extends Component {
             }
         });
     }
+    
+    handlePresence = (message) => {
+        if(message.type === 'both') {
+            
+        }
+    }
+
     getRosters = () => {
         sdk.conn.getRoster({
             success: (rosters) => {

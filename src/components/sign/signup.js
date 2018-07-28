@@ -6,6 +6,7 @@ import './index.css';
 import {Link} from 'react-router';
 import history from '../../history/history';
 import {reg} from '../../data/actions/sign';
+import safeRender from '../../decorators/safeRender';
 
 import tooltip from '../common/tooltip';
 
@@ -17,6 +18,7 @@ import tooltip from '../common/tooltip';
         reg
     }
 )
+
 export default class SignUp extends Component {
     signup = () => {
         let username = this.refs.name.value;

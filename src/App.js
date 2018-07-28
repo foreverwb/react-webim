@@ -11,25 +11,24 @@ import Chat from './components/chat'
 import { getToken } from './utils/token';
 
 class App extends Component {
-	
+  
 	componentWillMount() {
-		console.log(this.props)
-		let token = getToken();
-		if (token) {
-			// nothing
-		} else {
-			history.push('/login');
-		}
+	  let token = getToken();
+	  if (token) {
+		  //不做任何处理
+	  }else {
+		  history.push('/login');
+	  }
+	  
 	}
 	render() {
-		return (
-			<div className="main">
-				{/* <SignUp/> */}
-				{this.props.children}
-			</div>
-		);
+	  return (
+		<div className="main">
+			{this.props.children}
+		</div>
+	  );
 	}
-}
+  }
 
 /**
  * 
@@ -46,11 +45,12 @@ export default class Main extends Component {
 		return (
 			<Provider store={store}>
 				<Router history={history}>
-					<Route path="/" component={App}></Route>
-					<Route path="/signup" component={SignUp}></Route>
-					<Route path="/login" component={Login}></Route>
-					<Route path="/chat" component={Chat}></Route>
-					<Route path="/chat/:chatType/:chatId" component = {Chat} />
+					<Route path="/" component={App}>
+						<Route path="/signup" component={SignUp}></Route>
+						<Route path="/login" component={Login}></Route>
+						<Route path="/chat" component={Chat}></Route>
+						<Route path="/chat/:chatType/:chatId" component = {Chat} />
+					</Route>
 				</Router>
 			</Provider>
 		);
