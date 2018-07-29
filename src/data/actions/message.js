@@ -13,8 +13,8 @@ export function sendTextMsg(to, text, chatType) {
             to: to,                 // 接收消息对象（用户id）
             roomType: false,
             success: function (id, serverMsgId) {
-                // msg.fromMe = true;
-                // msg.from = getToken().user.username;
+                msg.fromMe = true;
+                msg.from = getToken().user.username;
                 dispatch(addTextMessage(to, msg));
             },
             fail: function(e){
