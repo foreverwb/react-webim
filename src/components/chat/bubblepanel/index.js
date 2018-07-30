@@ -19,6 +19,9 @@ export default class BubblePanel extends Component {
     sendMessageBtn = () => {
         let { sendTextMsg, currentSession, chatType  } = this.props;
         const msg = this.refs.msginput.value;
+        if(msg === '') {
+            return;
+        }
         sendTextMsg(currentSession.name, msg, chatType);
         this.refs.msginput.value = '';
     }
