@@ -1,7 +1,30 @@
 import { SEND_TEXT_MSG, GET_MSGS,  createAction} from '../actions/actiontypes';
 import {getToken} from '../../utils/token';
+import {getRosters} from './session';
+import eventEmitter from '../../utils/event';
 
 export let addTextMessage = createAction(SEND_TEXT_MSG, 'to', 'msg');
+
+export function init() {
+    return (dispatch) => {
+        sdk.conn.listen({
+            onOpened: (message) =>  {
+                dispatch(getRosters());
+            },
+            onTextMessage: (message) => {
+                message.value = message.value || message.data;
+                dispatch(addTextMessage(message.from, message));
+            },
+            onRoster: () => {
+                dispatch(getRosters());
+            },
+            onPresence: (message) => {
+                //this.handlePresence(message);
+                eventEmitter.emit('presence', message)
+            }
+        });
+    }
+}
 
 export function sendTextMsg(to, text, chatType) {
     return (dispatch) => {

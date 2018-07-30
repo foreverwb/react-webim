@@ -4,32 +4,42 @@ import Avator from '../../common/avator';
 import { showDialog, closeDialog } from '../../common/dialog';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { setCurrentSession } from '../../../data/actions/session';
+import { setCurrentSession, getRosters } from '../../../data/actions/session';
+import eventEmitter from '../../../utils/event';
 import './index.css';
+
+@connect(
+    (state) => ({
+        rosters: state.session.rosters
+    }),
+    {
+        getRosters
+    }
+)
 export default class SessionList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            friendList: [],
             showPanel: false,
             // subscribeMessage: null,
         };
     }
     componentWillMount() {
-        sdk.conn.listen({
-            onOpened: (message) =>  {
-                this.getRosters();
-            },
-            onTextMessage: (message) => {
-                debugger
-            },
-            onRoster: () => {
-                this.getRosters();
-            },
-            onPresence: (message) => {
-                this.handlePresence(message);
-            }
-        });
+        // sdk.conn.listen({
+        //     onOpened: (message) =>  {
+        //         this.props.getRosters();
+        //     },
+        //     onTextMessage: (message) => {
+        //         debugger
+        //     },
+        //     onRoster: () => {
+        //         this.props.getRosters();
+        //     },
+        //     onPresence: (message) => {
+        //         this.handlePresence(message);
+        //     }
+        // });
+        eventEmitter.on('presence', this.handlePresence);
     }
 
     handlePresence = (message) => {
@@ -78,26 +88,8 @@ export default class SessionList extends Component {
         closeDialog();
     }
 
-    getRosters = () => {
-        sdk.conn.getRoster({
-            success: (rosters) => {
-                rosters = rosters.filter((roster) => {
-                    return roster.subscription === 'both';
-                });
-                this.setState({
-                    friendList: rosters
-                })
-                console.log(rosters);
-            },
-            error: (e) => {
-
-            }
-        });
-    }
-
     render() {
-        let {friendList} = this.state;
-        let {chatId} = this.props;
+        let {rosters: friendList, chatId} = this.props;
         return (
             <div className="sessionlist">
                     {friendList.length ? friendList.map((friend) => {

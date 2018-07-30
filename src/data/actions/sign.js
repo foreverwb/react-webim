@@ -7,12 +7,12 @@ export function reg(options) {
         return new Promise((resolve, reject) => {
             let onSuccess = options.success;
             let onError = options.error;
-            options.success = function() {
+            options.success = function () {
                 onSuccess && onSuccess();
                 dispatch(regState(2))
                 resolve();
             }
-            options.error = function(e) {
+            options.error = function (e) {
                 onError && onError();
                 dispatch(regState(3))
                 reject();
@@ -28,6 +28,7 @@ export function login(options) {
         return new Promise((resolve, reject) => {
             options.success = (token) => {
                 resolve(token);
+
             }
             options.error = (error) => {
                 reject(error);
