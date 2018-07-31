@@ -16,6 +16,10 @@ import './index.css';
     }
 )
 export default class BubblePanel extends Component {
+
+    componentDidUpdate () {
+        this.refs.list.scrollTop = this.refs.inner.offsetHeight;
+    }
     sendMessageBtn = () => {
         let { sendTextMsg, currentSession, chatType  } = this.props;
         const msg = this.refs.msginput.value;
@@ -42,8 +46,8 @@ export default class BubblePanel extends Component {
                 <div className="title">
                     {currentSession ? currentSession.name : ''}
                 </div>
-                <div className="ctn-msglist">
-                    <div className="ctn-msglist-inner">
+                <div className="ctn-msglist" ref="list">
+                    <div className="ctn-msglist-inner" ref="inner">
                         {msgs.map(msg => {
                             return <BubbleItem key="msg.id" msg = {msg}/>
                         })} 
