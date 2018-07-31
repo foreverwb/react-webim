@@ -49,7 +49,7 @@ export default class BubblePanel extends Component {
                 <div className="ctn-msglist" ref="list">
                     <div className="ctn-msglist-inner" ref="inner">
                         {msgs.map(msg => {
-                            return <BubbleItem key="msg.id" msg = {msg}/>
+                            return <BubbleItem key={msg.id} msg = {msg}/>
                         })} 
                     </div>
                 </div>

@@ -1,9 +1,16 @@
 import { SEND_TEXT_MSG, GET_MSGS,  createAction} from '../actions/actiontypes';
 import {getToken} from '../../utils/token';
-import {getRosters} from './session';
+import {getRosters, changeRosterWithMsg} from './session';
 import eventEmitter from '../../utils/event';
 
 export let addTextMessage = createAction(SEND_TEXT_MSG, 'to', 'msg');
+
+function addTextMessageWithRosterChange(to, msg) {
+    return (dispatch) => {
+        dispatch(addTextMessage(to, msg));
+        dispatch(changeRosterWithMsg(msg));
+    }
+}
 
 export function init() {
     return (dispatch) => {
@@ -13,7 +20,7 @@ export function init() {
             },
             onTextMessage: (message) => {
                 message.value = message.value || message.data;
-                dispatch(addTextMessage(message.from, message));
+                dispatch(addTextMessageWithRosterChange(message.from, message));
             },
             onRoster: () => {
                 dispatch(getRosters());
@@ -38,7 +45,7 @@ export function sendTextMsg(to, text, chatType) {
             success: function (id, serverMsgId) {
                 msg.fromMe = true;
                 msg.from = getToken().user.username;
-                dispatch(addTextMessage(to, msg));
+                dispatch(addTextMessageWithRosterChange(to, msg));
             },
             fail: function(e){
                 //console.log("Send private text error");
