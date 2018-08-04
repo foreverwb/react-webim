@@ -3,7 +3,7 @@ import {createAction, REG_STATE_CHANGE} from '../actions/actiontypes';
 // REG_START/REG_SUCCESS/REG_ERROR 1 2 3
 export const regState = createAction(REG_STATE_CHANGE, 'state');
 export function reg(options) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         return new Promise((resolve, reject) => {
             let onSuccess = options.success;
             let onError = options.error;

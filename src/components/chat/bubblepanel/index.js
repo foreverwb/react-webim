@@ -49,7 +49,7 @@ export default class BubblePanel extends Component {
                 <div className="ctn-msglist" ref="list">
                     <div className="ctn-msglist-inner" ref="inner">
                         {msgs.map(msg => {
-                            return <BubbleItem key={msg.id} msg = {msg}/>
+                            return <BubbleItemWithErrorHandle key={msg.id} msg = {msg}/>
                         })} 
                     </div>
                 </div>
@@ -60,6 +60,25 @@ export default class BubblePanel extends Component {
            </div>
        );
     }
+}
+
+class BubbleItemWithErrorHandle extends Component {
+    state = {
+        hasError: false
+    }
+    componentDidCatch (error, info){
+        this.setState({ hasError: true });
+        // You can also log the error to an error reporting service
+        //logErrorToMyService(error, info);
+        console.error(error, info);
+    }
+    render() {
+        if (this.state.hasError) {
+            return <div>出错了，请联系RD修复</div>
+        }
+        return <BubbleItem msg = {this.props.msg} />
+    }
+
 }
 
 class BubbleItem extends Component{

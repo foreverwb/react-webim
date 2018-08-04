@@ -6,6 +6,8 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { setCurrentSession, getRosters } from '../../../data/actions/session';
 import eventEmitter from '../../../utils/event';
+import shallowequal from 'shallowequal';
+
 import './index.css';
 
 @connect(
@@ -110,6 +112,10 @@ export default class SessionList extends Component {
 )
 class SessionItem extends Component {
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return !shallowequal(nextProps.friend, this.props.friend) || nextProps.isSelected !== this.props.isSelected; 
+    }
+
     itemClick = () => {
         let { setCurrentSession, friend } = this.props;
         setCurrentSession(friend);
@@ -126,7 +132,7 @@ class SessionItem extends Component {
                     <div className="session-inner">
                         <div className="name">{friend.name}</div>
                         <div className="msg-preview">
-                            {/* {friend.message ? friend.message.value : null} */}
+                            {friend.message ? friend.message.value : null}
                         </div>
                     </div>
                 </Link>
