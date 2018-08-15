@@ -18,7 +18,12 @@ import tooltip from '../common/tooltip';
         reg
     }
 )
-
+@safeRender({
+    active: true,
+    errorHandler: function(e)  {
+        //alert(e.displayName + '---' + e.method)
+    }
+})
 export default class SignUp extends Component {
     signup = () => {
         let username = this.refs.name.value;

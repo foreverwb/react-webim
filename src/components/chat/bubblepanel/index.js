@@ -21,7 +21,7 @@ export default class BubblePanel extends Component {
         this.refs.list.scrollTop = this.refs.inner.offsetHeight;
     }
     sendMessageBtn = () => {
-        let { sendTextMsg, currentSession, chatType  } = this.props;
+        let { sendTextMsg, currentSession, chatType } = this.props;
         const msg = this.refs.msginput.value;
         if(msg === '') {
             return;
