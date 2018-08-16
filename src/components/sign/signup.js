@@ -7,6 +7,7 @@ import {Link} from 'react-router';
 import history from '../../history/history';
 import {reg} from '../../data/actions/sign';
 import safeRender from '../../decorators/safeRender';
+import { bindActionCreators } from 'redux'
 
 import tooltip from '../common/tooltip';
 
@@ -86,7 +87,15 @@ export default class SignUp extends Component {
         );
     }
 }
-
+// function mapStateToProps(state) {
+//     return {
+//         regState: state.sign.regState
+//     }
+// }
+// function mapDispatchToProps(dispatch) {
+//     return bindActionCreators({reg}, dispatch)
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
 class Loading extends Component {
     render() {
         return (

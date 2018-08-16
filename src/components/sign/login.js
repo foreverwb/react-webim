@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import {bindActionCreators} from 'redux';
 
 import {login} from '../../data/actions/sign';
 import classnames from 'classnames';
@@ -75,3 +76,10 @@ export default class Login extends Component {
         );
     }
 }
+// function mapStateToProps(state) {
+//     return {}
+// }
+// function mapDispatchToProps(dispatch) {
+//     return bindActionCreators({login}, dispatch)
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(Login)
