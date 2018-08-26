@@ -18,8 +18,6 @@ let middlewares = [thunk];
 
 let finalCreateStore = applyMiddleware(...middlewares)(createStore);
 
-finalCreateStore = applyMiddleware(...middlewares)(createStore);
-
 const store = finalCreateStore(reducers);
 
 export default store;
